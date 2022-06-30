@@ -1,5 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
-	<h1>ADD</h1>
+	<div class="container">
+		<h1>ADD</h1>
+		<h1>Add a new car to the DB</h1>
+		<form action="" method="post">
+			<!-- for brand, for year, submit button -->
+			{% csrf_token %}
+				<div class="form-group"> <!-- form-group, form-control, btn, btn-primary are added from stl of HTML -->
+				<!-- in case if we want to separate styling in future -->
+					<label for="brand">Brand:</label> <!-- for brand input -->
+					<input class="form-control" type="text" id="brand" name="brand">
+				</div>
+				<div>
+					<label for="year">Year:</label> <!-- for year input -->
+					<input class="form-control" type="text" id="year" name="year">
+				</div>
+				<input class="btn btn-primary" type="submit">
+		</form>
+
+	</div>
 {% endblock %}
