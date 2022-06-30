@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+	<h1>VARIABLE.HTML</h1>
+	<h2> {# this is a comment #}</h2>
+	<h2>Her first action was {{ first_name }} and her last action was {{ last_name }}</h2>
+	<h2>Her first action with filter was {{ first_name | lower | capfirst }} and her last action was
+		{{ last_name | capfirst}}
+	</h2>
+	<h2>whole list {{ some_list }}</h2>
+	<h2>indexing in a list: first elem {{ some_list.0 }}, second elem {{ some_list.1 }},
+		third elem {{ some_list.2 }}</h2>
+	{% for item in some_list %} {# {% %} - is django tag in django template language #}
+	<h2>{{ item }}</h2>
+	{% endfor %}
+	<h2>working with dictionary</h2>
+	<h2>whole dict {{ some_dict }}</h2>
+	<h2>value of key: {{ some_dict.some_key }}</h2>
+	<h2> keys of dict: {{ some_dict.keys }} </h2>
+	<h1> Generating unordered list from {{some_list}}</h1>
+	<ol>
+	{% for item in some_list %}
+	<li>{{ item }}</li>
+	{% endfor %}
+	</ol>
+	<h2>If condition dict</h2>
+	{% if if_dict.user_auth %}
+	<h1> printed if {{if_dict.keys}} value is {{ if_dict.user_auth | upper }}</h1>
+	{% endif %}
+	<h2>If-else loop nested conditions</h2>
+	<ul>
+	{% for item in some_list %}
+		{% if item == 2 %}
+		<h2>item is even and equals TWO</h2>
+		{% else %}
+		<li>{{ item }}</li>
+		{% endif %}
+	{% endfor %}
+	</ul>
+	{% if if_dict.user_auth %}
+	<h1>Welcome {{first_name | lower | capfirst}}!</h1>
+	{% endif %}
+{# boolean operators should be divided with spaces from both sides ==, >= etc #}
+</body>
+</html>
