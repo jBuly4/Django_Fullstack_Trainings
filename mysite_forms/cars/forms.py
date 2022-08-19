@@ -26,4 +26,17 @@ but you can do it only inside widget parameter.
 class ReviewForm(ModelForm):
     class Meta:
         model = Review
-        fields = ['first_name', 'last_name', 'stars']  # all fields we want to be in a form
+        # fields = ['first_name', 'last_name', 'stars']  # all fields we want to be in a form
+        fields = "__all__"  # pass in all model fields as form fields
+        # if we wnat to change labels
+        labels = {
+            'first_name': 'Your first name',
+            'last_name': 'Your last name',
+            'stars': 'Rating'
+        }
+        error_messages = {
+            'stars': {
+                'min_value': 'YO! Min value is 1!',
+                'max_value': 'YO! Max value is 5!'
+            }
+        }
