@@ -1,6 +1,7 @@
 from django.contrib import admin
 from cars.models import Car  # dunno why cars.models marked as mistake. maby because project is pure python?
 
+
 # Register your models here.
 
 # admin.site.register(Car)
@@ -14,5 +15,6 @@ class CarAdmin(admin.ModelAdmin):
         ('CAR INFORMATION', {'fields': ['brand']}),
     ]
     # additional information look in documentation of django
+
 
 admin.site.register(Car, CarAdmin)
