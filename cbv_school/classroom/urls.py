@@ -3,7 +3,7 @@ from django.urls import path
 from .views import (HomeView, ThankView,
                     ContactFormView, TeacherCreateView,
                     TeacherListView, TeacherDetailView,
-                    TeacherUdpateView)
+                    TeacherUdpateView, TeacherDeleteView)
 app_name = 'classroom'
 
 
@@ -20,5 +20,6 @@ urlpatterns = [
     path('teacher_detail/<int:pk>', TeacherDetailView.as_view(), name='detail_teacher'),  # to gain specific teacher
     # using its PK
     path('update_teacher/<int:pk>', TeacherUdpateView.as_view(), name='update_teacher'),
+    path('delete_teacher/<int:pk>', TeacherDeleteView.as_view(), name='delete_teacher'),
 
 ]

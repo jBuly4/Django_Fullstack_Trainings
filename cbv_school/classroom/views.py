@@ -1,7 +1,8 @@
 from django.urls import reverse_lazy
 from django.views.generic import (TemplateView, FormView,
                                   CreateView, ListView,
-                                  DetailView, UpdateView)
+                                  DetailView, UpdateView,
+                                  DeleteView)
 from .forms import ContactForm
 from .models import Teacher
 
@@ -54,6 +55,14 @@ class TeacherUdpateView(UpdateView):
     model = Teacher
     # fields = ['last_name']  # fields you want to allow to update
     fields = '__all__'
+    success_url = reverse_lazy('classroom:list_teacher')
+
+
+class TeacherDeleteView(DeleteView):
+    # form --> confirm delete button
+    # default template name:
+    # model_confirm_delete.html
+    model = Teacher
     success_url = reverse_lazy('classroom:list_teacher')
 
 
