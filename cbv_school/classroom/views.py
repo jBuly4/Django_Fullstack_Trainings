@@ -1,5 +1,7 @@
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, FormView, CreateView, ListView
+from django.views.generic import (TemplateView, FormView,
+                                  CreateView, ListView,
+                                  DetailView)
 from .forms import ContactForm
 from .models import Teacher
 
@@ -38,6 +40,13 @@ class TeacherListView(ListView):
     queryset = Teacher.objects.order_by('first_name')  # dunno why it's ordering in reverse. use minus
     # in case if you want to change name of variable for context instead of using default "object_list"
     context_object_name = "teacher_list"
+
+
+class TeacherDetailView(DetailView):
+    # returns only one entry from a model using their PK
+    # --> model_detail.html
+    model = Teacher
+    # finds PK then sends it to context teacher
 
 
 class ContactFormView(FormView):
