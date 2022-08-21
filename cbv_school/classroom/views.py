@@ -1,6 +1,7 @@
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, FormView
+from django.views.generic import TemplateView, FormView, CreateView
 from .forms import ContactForm
+from .models import Teacher
 
 # Create your views here.
 
@@ -19,6 +20,17 @@ class ThankView(TemplateView):
 # TemplateViews should be used in cases where all work will be done inside template
 
 
+class TeacherCreateView(CreateView):
+    # for generic views working with models there is a convention how templates should be named:
+    # model_form.html -> i.e. teacher_form.html\
+    # does .save() if all fields are valid
+    # !! creates a new instance
+    model = Teacher # 1st step
+    # fields = ['first_name', 'subject']  # choose fields you want to work with
+    fields = "__all__"  # if you want to use all fields
+    success_url = reverse_lazy('classroom:thank_you')
+
+
 class ContactFormView(FormView):
     form_class = ContactForm
     template_name = 'classroom/contact.html'
@@ -33,3 +45,4 @@ class ContactFormView(FormView):
         print(form.cleaned_data)
         # ContactForm(request.POST)
         return super().form_valid(form)
+
