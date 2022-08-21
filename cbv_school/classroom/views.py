@@ -1,7 +1,7 @@
 from django.urls import reverse_lazy
 from django.views.generic import (TemplateView, FormView,
                                   CreateView, ListView,
-                                  DetailView)
+                                  DetailView, UpdateView)
 from .forms import ContactForm
 from .models import Teacher
 
@@ -47,6 +47,14 @@ class TeacherDetailView(DetailView):
     # --> model_detail.html
     model = Teacher
     # finds PK then sends it to context teacher
+
+
+class TeacherUdpateView(UpdateView):
+    # share model_form.html but for specific PK
+    model = Teacher
+    # fields = ['last_name']  # fields you want to allow to update
+    fields = '__all__'
+    success_url = reverse_lazy('classroom:list_teacher')
 
 
 class ContactFormView(FormView):

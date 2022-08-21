@@ -13,6 +13,13 @@
 				<a href="/classroom/teacher_detail/{{ teacher.id }}">
 					{{ teacher.first_name }} {{ teacher.last_name }}
 				</a>
+				<ul>
+					<li>
+						<a href="/classroom/update_teacher/{{ teacher.id }}">
+							Update info about {{ teacher.first_name }}
+						</a>
+					</li>
+				</ul>
 			</li>
 		{% endfor %}
 	</ul>
