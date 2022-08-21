@@ -1,5 +1,5 @@
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, FormView, CreateView
+from django.views.generic import TemplateView, FormView, CreateView, ListView
 from .forms import ContactForm
 from .models import Teacher
 
@@ -31,6 +31,15 @@ class TeacherCreateView(CreateView):
     success_url = reverse_lazy('classroom:thank_you')
 
 
+class TeacherListView(ListView):
+    # --> model_list.html
+    model = Teacher
+    # by default queryset = Teacher.objects.all()
+    queryset = Teacher.objects.order_by('first_name')  # dunno why it's ordering in reverse. use minus
+    # in case if you want to change name of variable for context instead of using default "object_list"
+    context_object_name = "teacher_list"
+
+
 class ContactFormView(FormView):
     form_class = ContactForm
     template_name = 'classroom/contact.html'
@@ -45,4 +54,3 @@ class ContactFormView(FormView):
         print(form.cleaned_data)
         # ContactForm(request.POST)
         return super().form_valid(form)
-
